@@ -80,7 +80,16 @@ function handleTouchEnd (event) {
 
     const x = event.changedTouches[0].clientX;
     const y = event.changedTouches[0].clientY;
+    const dragPreview = touchDndCustomEvents.store.dragPreviewElement;
+    const previewContainer = updateDragPreview(dragPreview, x, y);
+
+    // hide dragPreview so we can get the element underneath
+    previewContainer.hidden = true;
+
     const target = document.elementFromPoint(x, y);
+
+    // show dragPreview again
+    previewContainer.hidden = false;
 
     const dataTransfer = touchDndCustomEvents.dataTransfer;
 
